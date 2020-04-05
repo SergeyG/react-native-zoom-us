@@ -80,7 +80,7 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule
   }
 
   @ReactMethod
-  public void startMeeting(final String displayName, final String meetingNo, final String userId, final String zac,
+  public void startMeeting(final String displayName, final String meetingNo, final String passWord, final String userId, final String zac,
       Promise promise) {
     try {
       meetingPromise = promise;
@@ -120,6 +120,7 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule
       StartMeetingParamsWithoutLogin params = new StartMeetingParamsWithoutLogin();
       params.displayName = displayName;
       params.meetingNo = meetingNo;
+      params.passWord = passWord;
       params.userId = userId;
       params.userType = MeetingService.USER_TYPE_API_USER;
       params.zoomAccessToken = zac;

@@ -77,6 +77,7 @@ RCT_EXPORT_METHOD(
 RCT_EXPORT_METHOD(
   startMeeting: (NSString *)displayName
   withMeetingNo: (NSString *)meetingNo
+  withPassWord: (NSString *)passWord
   withUserId: (NSString *)userId
   withZoomAccessToken: (NSString *)zoomAccessToken
   withResolve: (RCTPromiseResolveBlock)resolve
@@ -102,6 +103,7 @@ RCT_EXPORT_METHOD(
       MobileRTCMeetingStartParam4WithoutLoginUser *params = [[MobileRTCMeetingStartParam4WithoutLoginUser alloc]init];
       params.userName = displayName;
       params.meetingNumber = meetingNo;
+      params.passWord = passWord;
       params.userID = userId;
       params.userType = MobileRTCUserType_APIUser;
       params.zak = zoomAccessToken;
