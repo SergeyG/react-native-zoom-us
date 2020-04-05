@@ -120,7 +120,6 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule
       StartMeetingParamsWithoutLogin params = new StartMeetingParamsWithoutLogin();
       params.displayName = displayName;
       params.meetingNo = meetingNo;
-      params.passWord = passWord;
       params.userId = userId;
       params.userType = MeetingService.USER_TYPE_API_USER;
       params.zoomAccessToken = zac;

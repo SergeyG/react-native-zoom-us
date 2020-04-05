@@ -93,6 +93,7 @@ RCT_EXPORT_METHOD(
       [settings setAutoConnectInternetAudio:@YES];
       [settings disableCallIn:@YES];
       [settings disableCallOut:@YES];
+      settings.meetingPasswordHidden = @NO;
       settings.meetingChatHidden = @YES;
       settings.meetingParticipantHidden = @YES;
     }
@@ -100,16 +101,16 @@ RCT_EXPORT_METHOD(
     if (ms) {
       ms.delegate = self;
 
-      MobileRTCMeetingStartParam4WithoutLoginUser *params = [[MobileRTCMeetingStartParam4WithoutLoginUser alloc]init];
-      params.userName = displayName;
-      params.meetingNumber = meetingNo;
-      params.passWord = passWord;
-      params.userID = userId;
-      params.userType = MobileRTCUserType_APIUser;
-      params.zak = zoomAccessToken;
-      params.userToken = @"null";
-
-      MobileRTCMeetError startMeetingResult = [ms startMeetingWithStartParam:params];
+      NSDictionary *paramDict = @{
+        kMeetingParam_UserID: userId,
+        kMeetingParam_UserToken: @"null",
+        kMeetingParam_UserType: @(MobileRTCUserType_APIUser),
+        kMeetingParam_Username: displayName,
+        kMeetingParam_MeetingNumber: meetingNo,
+        kMeetingParam_MeetingPassword: passWord,
+        kMeetingParam_WebinarToken: zoomAccessToken
+      };
+      MobileRTCMeetError startMeetingResult = [ms startMeetingWithDictionary:paramDict];
       NSLog(@"startMeeting, startMeetingResult=%d", startMeetingResult);
     }
   } @catch (NSError *ex) {
